@@ -119,7 +119,10 @@ class Humanize(object):
             if locale is None:
                 locale = self.default_locale
 
-        humanize.i18n.activate(locale)
+        try:
+            humanize.i18n.activate(locale)
+        except IOError:
+            pass
 
     def __humanize(self, value, fname='naturaltime', **kwargs):
         try:
