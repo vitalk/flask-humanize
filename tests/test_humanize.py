@@ -54,3 +54,10 @@ class TestL10N:
     @pytest.mark.options(humanize_default_locale='ru_RU')
     def test_default_locale(self, client):
         assert client.get(url_for('naturaltime')).data == b(u'сейчас')
+
+    def test_fallback_to_default_if_no_translations_for_locale(self, client, h):
+        @h.localeselector
+        def get_locale():
+            return 'tlh'
+
+        assert client.get(url_for('naturaltime')).data == b'now'
