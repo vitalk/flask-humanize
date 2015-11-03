@@ -83,6 +83,7 @@ class Humanize(object):
 
         app.add_template_filter(self._humanize, 'humanize')
         app.before_request(self._set_locale)
+        app.after_request(self._unset_locale)
 
         if not hasattr(app, 'extensions'):
             app.extensions = {}
@@ -123,6 +124,10 @@ class Humanize(object):
             humanize.i18n.activate(locale)
         except IOError:
             pass
+
+    def _unset_locale(self, response):
+        humanize.i18n.deactivate()
+        return response
 
     def _humanize(self, value, fname='naturaltime', **kwargs):
         try:

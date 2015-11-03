@@ -18,6 +18,9 @@ class TestInit:
     def test_register_before_request_callback(self, app, h):
         assert h._set_locale in app.before_request_funcs[None]
 
+    def test_register_after_request_callback(self, app, h):
+        assert h._unset_locale in app.after_request_funcs[None]
+
     def test_register_template_filter(self, app, h):
         assert h._humanize in app.jinja_env.filters.values()
 
@@ -37,7 +40,7 @@ class TestHumanize:
         assert client.get(url_for('naturaldate')).data == b'Apr 21 1987'
 
 
-class TestOptions:
+class TestL10N:
 
     def test_locale_selector(self, client, h):
         @h.localeselector
