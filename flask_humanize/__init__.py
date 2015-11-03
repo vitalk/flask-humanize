@@ -81,8 +81,8 @@ class Humanize(object):
             if default_locale is not None:
                 app.config.setdefault(self_name('default_locale'), default_locale)
 
-        app.add_template_filter(self.__humanize, 'humanize')
-        app.before_request(self.__set_locale)
+        app.add_template_filter(self._humanize, 'humanize')
+        app.before_request(self._set_locale)
 
         if not hasattr(app, 'extensions'):
             app.extensions = {}
@@ -111,7 +111,7 @@ class Humanize(object):
         self.locale_selector_func = func
         return func
 
-    def __set_locale(self):
+    def _set_locale(self):
         if self.locale_selector_func is None:
             locale = self.default_locale
         else:
@@ -124,7 +124,7 @@ class Humanize(object):
         except IOError:
             pass
 
-    def __humanize(self, value, fname='naturaltime', **kwargs):
+    def _humanize(self, value, fname='naturaltime', **kwargs):
         try:
             method = getattr(humanize, fname)
         except AttributeError:
