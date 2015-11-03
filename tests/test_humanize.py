@@ -39,26 +39,26 @@ class TestInit:
 class TestHumanize:
 
     def test_naturalday(self, h):
-        assert h._humanize(today, 'naturalday') == b'today'
-        assert h._humanize(today + one_day, 'naturalday') == b'tomorrow'
-        assert h._humanize(today - one_day, 'naturalday') == b'yesterday'
+        assert h._humanize(today, 'naturalday') == 'today'
+        assert h._humanize(today + one_day, 'naturalday') == 'tomorrow'
+        assert h._humanize(today - one_day, 'naturalday') == 'yesterday'
 
     def test_naturaltime(self, h):
-        assert h._humanize(now) == b'now'
-        assert h._humanize(now - one_month) == b'a month ago'
+        assert h._humanize(now) == 'now'
+        assert h._humanize(now - one_month) == 'a month ago'
 
     def test_naturaltime_nomonths(self, h):
-        assert h._humanize(now - one_month, months=False) == b'31 days ago'
+        assert h._humanize(now - one_month, months=False) == '31 days ago'
 
     def test_naturaldelta(self, h):
-        assert h._humanize(one_day, 'naturaldelta') == b'a day'
-        assert h._humanize(one_month, 'naturaldelta') == b'a month'
+        assert h._humanize(one_day, 'naturaldelta') == 'a day'
+        assert h._humanize(one_month, 'naturaldelta') == 'a month'
 
     def test_naturaldelta_nomonths(self, h):
-        assert h._humanize(one_month, 'naturaldelta', months=False) == b'31 days'
+        assert h._humanize(one_month, 'naturaldelta', months=False) == '31 days'
 
     def test_naturaldate(self, h):
-        assert h._humanize(birthday, 'naturaldate') == b'Apr 21 1987'
+        assert h._humanize(birthday, 'naturaldate') == 'Apr 21 1987'
 
     def test_invalid_fname(self, h):
         with pytest.raises(Exception) as exc:
