@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 import pytest
 from datetime import (
-    date, datetime, timedelta
+    datetime, timedelta
 )
 
 from flask import (
