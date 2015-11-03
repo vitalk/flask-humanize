@@ -1,9 +1,19 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import pytest
+from datetime import (
+    date, datetime, timedelta
+)
 
 from flask import url_for
 from flask_humanize.compat import text_type
+
+
+now = datetime.now()
+today = date.today()
+one_day = timedelta(days=1)
+one_month = timedelta(days=31)
+birthday = date(1987, 4, 21)
 
 
 def b(string):
@@ -25,19 +35,46 @@ class TestInit:
         assert h._humanize in app.jinja_env.filters.values()
 
 
+@pytest.mark.usefixtures('app')
 class TestHumanize:
 
-    def test_naturalday(self, client):
-        assert client.get(url_for('naturalday')).data == b'today'
+    def test_naturalday(self, h):
+        assert h._humanize(today, 'naturalday') == b'today'
+        assert h._humanize(today + one_day, 'naturalday') == b'tomorrow'
+        assert h._humanize(today - one_day, 'naturalday') == b'yesterday'
 
-    def test_naturaltime(self, client):
-        assert client.get(url_for('naturaltime')).data == b'now'
+    def test_naturaltime(self, h):
+        assert h._humanize(now) == b'now'
+        assert h._humanize(now - one_month) == b'a month ago'
 
-    def test_naturaldelta(self, client):
-        assert client.get(url_for('naturaldelta')).data == b'7 days'
+    def test_naturaltime_nomonths(self, h):
+        assert h._humanize(now - one_month, months=False) == b'31 days ago'
 
-    def test_naturaldate(self, client):
-        assert client.get(url_for('naturaldate')).data == b'Apr 21 1987'
+    def test_naturaldelta(self, h):
+        assert h._humanize(one_day, 'naturaldelta') == b'a day'
+        assert h._humanize(one_month, 'naturaldelta') == b'a month'
+
+    def test_naturaldelta_nomonths(self, h):
+        assert h._humanize(one_month, 'naturaldelta', months=False) == b'31 days'
+
+    def test_naturaldate(self, h):
+        assert h._humanize(birthday, 'naturaldate') == b'Apr 21 1987'
+
+    def test_invalid_fname(self, h):
+        with pytest.raises(Exception) as exc:
+            h._humanize(now, fname='foo')
+
+        assert text_type(exc.value) == (
+            "Humanize module does not contains function 'foo'"
+        )
+
+    def test_unsupported_arguments(self, h):
+        with pytest.raises(ValueError) as exc:
+            h._humanize(now, foo=42)
+
+        assert text_type(exc.value) == (
+            "An error occured during execution function 'naturaltime'"
+        )
 
 
 class TestL10N:

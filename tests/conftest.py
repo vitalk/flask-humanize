@@ -36,11 +36,6 @@ def app():
         return render_template_string("{{ value|humanize('naturaldelta') }}",
                                       value=timedelta(days=7))
 
-    @app.route('/naturaldate')
-    def naturaldate():
-        return render_template_string("{{ date|humanize('naturaldate') }}",
-                                      date=date(1987, 4, 21))
-
     return app
 
 
