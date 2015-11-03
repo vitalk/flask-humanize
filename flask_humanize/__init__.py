@@ -35,7 +35,7 @@ def app_has_babel(app):
 
 def self_name(string):
     """Create config key for extension."""
-    return 'HUMANIZE_{}'.format(string.upper())
+    return 'HUMANIZE_{0}'.format(string.upper())
 
 
 default_config = ImmutableDict({
