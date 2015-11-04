@@ -1,0 +1,5 @@
+include README.md
+include Makefile
+include *.rst
+recursive-include tests *.py
+recursive-include requirements *.txt
