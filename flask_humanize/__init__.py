@@ -18,7 +18,7 @@ from werkzeug.datastructures import ImmutableDict
 from . import compat
 
 
-__version__ = '0.0.1'
+__version__ = '0.1.0'
 
 
 def force_unicode(value):
@@ -35,7 +35,7 @@ def app_has_babel(app):
 
 def self_name(string):
     """Create config key for extension."""
-    return 'HUMANIZE_{}'.format(string.upper())
+    return 'HUMANIZE_{0}'.format(string.upper())
 
 
 default_config = ImmutableDict({
@@ -81,8 +81,9 @@ class Humanize(object):
             if default_locale is not None:
                 app.config.setdefault(self_name('default_locale'), default_locale)
 
-        app.add_template_filter(self.__humanize, 'humanize')
-        app.before_request(self.__set_locale)
+        app.add_template_filter(self._humanize, 'humanize')
+        app.before_request(self._set_locale)
+        app.after_request(self._unset_locale)
 
         if not hasattr(app, 'extensions'):
             app.extensions = {}
@@ -111,7 +112,7 @@ class Humanize(object):
         self.locale_selector_func = func
         return func
 
-    def __set_locale(self):
+    def _set_locale(self):
         if self.locale_selector_func is None:
             locale = self.default_locale
         else:
@@ -124,7 +125,11 @@ class Humanize(object):
         except IOError:
             pass
 
-    def __humanize(self, value, fname='naturaltime', **kwargs):
+    def _unset_locale(self, response):
+        humanize.i18n.deactivate()
+        return response
+
+    def _humanize(self, value, fname='naturaltime', **kwargs):
         try:
             method = getattr(humanize, fname)
         except AttributeError:
