@@ -93,6 +93,8 @@ class Humanize(object):
         if app.config.get('HUMANIZE_USE_UTC'):
             # Override humanize.time._now to use UTC time
             humanize.time._now = datetime.utcnow
+        else:
+            humanize.time._now = datetime.now
 
     @property
     def default_locale(self):
