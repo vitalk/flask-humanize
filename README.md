@@ -3,6 +3,14 @@
 Provides an interface between [Flask](http://flask.pocoo.org/) web framework
 and [humanize](https://github.com/jmoiron/humanize) library.
 
+## Configuration
+
+In order to use UTC time for Humanize date and time methods set config:
+
+```python
+HUMANIZE_USE_UTC = True  # default is false
+```
+
 ## Features
 
 - Add new filter `humanize` to jinja environment, which can be easily used for
