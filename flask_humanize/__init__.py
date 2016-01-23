@@ -11,6 +11,7 @@
     :copyright: (c) by Vital Kudzelka
     :license: MIT
 """
+from datetime import datetime
 import humanize
 from flask import current_app
 from werkzeug.datastructures import ImmutableDict
@@ -19,6 +20,9 @@ from . import compat
 
 
 __version__ = '0.1.0'
+
+# Override humanize.time._now to use UTC time
+humanize.time._now = datetime.utcnow
 
 
 def force_unicode(value):
