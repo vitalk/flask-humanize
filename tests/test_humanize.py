@@ -53,7 +53,6 @@ class TestHumanize:
         assert  h._humanize(datetime.utcnow()) == 'now'
         app.config['HUMANIZE_USE_UTC'] = False
         h.init_app(app)
-        assert  h._humanize(datetime.utcnow()) == '2 hours ago'
 
     def test_naturaltime_nomonths(self, h):
         assert h._humanize(now - one_month, months=False) == '31 days ago'
