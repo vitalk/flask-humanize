@@ -21,9 +21,6 @@ from . import compat
 
 __version__ = '0.1.0'
 
-# Override humanize.time._now to use UTC time
-humanize.time._now = datetime.utcnow
-
 
 def force_unicode(value):
     if not isinstance(value, compat.text_type):
@@ -92,6 +89,10 @@ class Humanize(object):
         if not hasattr(app, 'extensions'):
             app.extensions = {}
         app.extensions['humanize'] = self
+
+        if app.config.get('HUMANIZE_USE_UTC'):
+            # Override humanize.time._now to use UTC time
+            humanize.time._now = datetime.utcnow
 
     @property
     def default_locale(self):
