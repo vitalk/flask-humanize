@@ -82,6 +82,12 @@ class Humanize(object):
             if default_locale is not None:
                 app.config.setdefault(self_name('default_locale'), default_locale)
 
+        if app.config.get('HUMANIZE_USE_UTC'):
+            # Override humanize.time._now to use UTC time
+            humanize.time._now = datetime.utcnow
+        else:
+            humanize.time._now = datetime.now
+
         app.add_template_filter(self._humanize, 'humanize')
         app.before_request(self._set_locale)
         app.after_request(self._unset_locale)
@@ -90,11 +96,6 @@ class Humanize(object):
             app.extensions = {}
         app.extensions['humanize'] = self
 
-        if app.config.get('HUMANIZE_USE_UTC'):
-            # Override humanize.time._now to use UTC time
-            humanize.time._now = datetime.utcnow
-        else:
-            humanize.time._now = datetime.now
 
     @property
     def default_locale(self):
