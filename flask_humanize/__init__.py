@@ -43,6 +43,9 @@ default_config = ImmutableDict({
     # The default locale to work with. When `BABEL_DEFAULT_LOCALE` is
     # available then it used instead.
     'default_locale': 'en',
+
+    # Use UTC instead of local time for humanize dates and times.
+    'use_utc': False,
 })
 
 
