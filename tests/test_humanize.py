@@ -7,6 +7,7 @@ from datetime import (
 
 from flask import url_for
 from flask_humanize.compat import text_type
+import humanize
 
 
 now = datetime.now()
@@ -98,3 +99,18 @@ class TestL10N:
             return 'tlh'
 
         assert client.get(url_for('naturaltime')).data == b'now'
+
+@pytest.mark.usefixtures('app')
+class TestUTC:
+
+    @pytest.mark.options(humanize_use_utc=True)
+    def test_use_utc(self, h):
+        assert humanize.time._now == datetime.utcnow
+
+    @pytest.mark.options(humanize_use_utc=False)
+    def test_dont_use_utc(self, h):
+        assert humanize.time._now == datetime.now
+
+    @pytest.mark.options(humanize_use_utc=True)
+    def test_naturaltime_with_utc(self, h):
+        assert h._humanize(datetime.utcnow()) == 'now'
