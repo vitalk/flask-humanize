@@ -56,10 +56,11 @@ and [humanize](https://github.com/jmoiron/humanize) library.
     {{ datetime.datetime.now()|humanize }} -> сейчас
     ```
 
-- In order to use UTC time instead of local time for humanize date and time methods set config:
+- In order to use UTC time instead of local time for humanize date and time
+  methods use `HUMANIZE_USE_UTC` option, which is disabled by default:
 
     ```python
-    HUMANIZE_USE_UTC = True  # default is false
+    HUMANIZE_USE_UTC = True
     ```
 
 ## Issues
