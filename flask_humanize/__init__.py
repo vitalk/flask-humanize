@@ -19,7 +19,7 @@ from werkzeug.datastructures import ImmutableDict
 from . import compat
 
 
-__version__ = '0.1.0'
+__version__ = '0.2.0'
 
 
 def force_unicode(value):
