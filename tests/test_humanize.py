@@ -100,6 +100,7 @@ class TestL10N:
 
         assert client.get(url_for('naturaltime')).data == b'now'
 
+
 @pytest.mark.usefixtures('app')
 class TestUTC:
 

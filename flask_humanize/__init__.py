@@ -96,7 +96,6 @@ class Humanize(object):
             app.extensions = {}
         app.extensions['humanize'] = self
 
-
     @property
     def default_locale(self):
         """Returns the default locale for current application."""
