@@ -35,6 +35,10 @@ class TestInit:
     def test_register_template_filter(self, app, h):
         assert h._humanize in app.jinja_env.filters.values()
 
+    def test_defaults(self, config, h):
+        assert config['HUMANIZE_DEFAULT_LOCALE'] == 'en'
+        assert not config['HUMANIZE_USE_UTC']
+
 
 @pytest.mark.usefixtures('app')
 class TestHumanize:
