@@ -1,6 +1,14 @@
 Changelog
 =========
 
+0.2.0 (2016-01-25)
+------------------
+
+- Support UTC time. Thanks to `@diginikkari`_ for the complete PR (`#2`_).
+
+.. _#2: https://github.com/vitalk/flask-humanize/pull/2
+.. _@diginikkari: https://github.com/diginikkari
+
 0.1.0 (2015-11-04)
 ------------------
 
