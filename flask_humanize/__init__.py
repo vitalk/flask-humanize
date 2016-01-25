@@ -19,7 +19,7 @@ from werkzeug.datastructures import ImmutableDict
 from . import compat
 
 
-__version__ = '0.1.0'
+__version__ = '0.2.0'
 
 
 def force_unicode(value):
@@ -43,6 +43,9 @@ default_config = ImmutableDict({
     # The default locale to work with. When `BABEL_DEFAULT_LOCALE` is
     # available then it used instead.
     'default_locale': 'en',
+
+    # Use UTC instead of local time for humanize dates and times.
+    'use_utc': False,
 })
 
 
@@ -95,7 +98,6 @@ class Humanize(object):
         if not hasattr(app, 'extensions'):
             app.extensions = {}
         app.extensions['humanize'] = self
-
 
     @property
     def default_locale(self):
