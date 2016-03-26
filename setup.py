@@ -47,7 +47,7 @@ install_requires = read('requirements', 'main.txt')
 
 
 setup(
-    name='Humanize-Flask',
+    name='Flask-Humanize',
     version=__version__,
 
     author='Vital Kudzelka',
