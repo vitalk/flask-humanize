@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-Humanize-Flask
+Flask-Humanize
 ==============
 
 Extension provides common humanization utilities, like turning number into a
