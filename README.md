@@ -1,4 +1,4 @@
-# Humanize Flask
+# Flask Humanize
 
 Provides an interface between [Flask](http://flask.pocoo.org/) web framework
 and [humanize](https://github.com/jmoiron/humanize) library.

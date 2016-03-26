@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-Humanize-Flask
+Flask-Humanize
 ==============
 
 Extension provides common humanization utilities, like turning number into a
@@ -47,7 +47,7 @@ install_requires = read('requirements', 'main.txt')
 
 
 setup(
-    name='Humanize-Flask',
+    name='Flask-Humanize',
     version=__version__,
 
     author='Vital Kudzelka',
