@@ -1,6 +1,17 @@
 Changelog
 =========
 
+0.3.0 (2016-03-26)
+------------------
+
+- ``PyPI`` package has been renamed into ``Flask-Humanize`` (`#4`_). Thanks to
+  `@singingwolfboy`_, `@eg0r`_ and `@egorsmkv`_.
+
+.. _#4: https://github.com/vitalk/flask-humanize/issues/4
+.. _@singingwolfboy: https://github.com/singingwolfboy
+.. _@egorsmkv: https://github.com/egorsmkv
+.. _@eg0r: https://github.com/eg0r
+
 0.2.0 (2016-01-25)
 ------------------
 
