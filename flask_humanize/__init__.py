@@ -140,6 +140,9 @@ class Humanize(object):
         return response
 
     def _humanize(self, value, fname='naturaltime', **kwargs):
+        if value is None:
+            return ''
+
         try:
             method = getattr(humanize, fname)
         except AttributeError:
