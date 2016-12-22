@@ -1,8 +1,8 @@
 Changelog
 =========
 
-Upcomming release
------------------
+Upcoming release
+----------------
 
 - Prevent ``AttributeError`` when trying to humanize ``None`` value (`#6`_),
   thanks to `@earlbread`_ for the report.
