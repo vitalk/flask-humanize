@@ -43,6 +43,9 @@ class TestInit:
 @pytest.mark.usefixtures('app')
 class TestHumanize:
 
+    def test_none(self, h):
+        assert h._humanize(None) is None
+
     def test_naturalday(self, h):
         assert h._humanize(today, 'naturalday') == 'today'
         assert h._humanize(today + one_day, 'naturalday') == 'tomorrow'

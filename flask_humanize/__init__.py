@@ -16,15 +16,18 @@ import humanize
 from flask import current_app
 from werkzeug.datastructures import ImmutableDict
 
-from . import compat
+from .compat import (
+    text_type, string_types
+)
 
 
 __version__ = '0.3.0'
 
 
 def force_unicode(value):
-    if not isinstance(value, compat.text_type):
-        return value.decode('utf-8')
+    if isinstance(value, string_types):
+        if not isinstance(value, text_type):
+            return value.decode('utf-8')
     return value
 
 
