@@ -13,7 +13,7 @@ and [humanize](https://github.com/jmoiron/humanize) library.
       ```jinja
       {{ 12345|humanize('intcomma') }} -> 12,345
       {{ 12345591313|humanize('intword') }} -> 12.3 billion
-      {{ 5|humanize('aphumber') }} -> five
+      {{ 5|humanize('apnumber') }} -> five
       ```
 
     + Floating point numbers:
