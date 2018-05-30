@@ -1,6 +1,15 @@
 Changelog
 =========
 
+Upcoming release
+----------------
+
+- Prevent ``AttributeError`` when trying to humanize ``None`` value (`#6`_),
+  thanks to `@earlbread`_ for the report.
+
+.. _#6: https://github.com/vitalk/flask-humanize/pull/6
+.. _@earlbread: https://github.com/earlbread
+
 0.3.0 (2016-03-26)
 ------------------
 
