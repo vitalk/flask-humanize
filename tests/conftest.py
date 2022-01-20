@@ -44,5 +44,5 @@ def h(request):
     if 'app' not in request.fixturenames:
         return
 
-    app = request.getfuncargvalue('app')
+    app = request.getfixturevalue('app')
     return Humanize(app)
